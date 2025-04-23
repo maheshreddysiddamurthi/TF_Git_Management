@@ -1,0 +1,90 @@
+on:
+  workflow_call:
+    inputs:
+      ENV:
+        required: true
+        type: string
+    
+    outputs:  
+      TFPlanExitCode: 
+        value: ${{ jobs.Terraform_Plan.outputs.tfplanExitCode }}
+
+permissions:
+  id-token: write
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs: 
+  Terraform_Plan:
+    name: "Terraform_Plan"
+    runs-on: ubuntu-latest
+
+    outputs:
+      tfplanExitCode: ${{ steps.plan.outputs.TFPlanExitCode }}    
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::033614065377:role/TF_Github_Action
+          role-session-name: samplerolesession
+          aws-region: ap-south-1
+
+      - name: Terraform format
+        id: fmt
+        run: terraform fmt -check
+
+      - name: Terraform init
+        id: init
+        run: terraform init -upgrade -backend-config=backend-${{ inputs.ENV }}.hcl
+
+      - name: Terraform validate
+        id: validate
+        run: terraform validate
+
+      - name: "Terraform Plan"
+        id: plan
+        run: |
+          set +e
+          terraform plan -detailed-exitcode -var-file="${{ inputs.ENV }}.tfvars" -out='tfplan'
+          TFPlanExitCode="$?" 
+          echo "TFPlanExitCode=$TFPlanExitCode" >> $GITHUB_OUTPUT
+
+      - name: Plan Status
+        if: ${{steps.plan.outputs.TFPlanExitCode == 1 }}
+        run:  |
+          echo "Terraform plan Failure...!"
+          exit 1
+      
+      - name: Upload Terraform Plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.ENV }}-tfplan
+          path: tfplan
+          overwrite: true
+
+      - name: Taking Output
+        if: ${{ steps.plan.outputs.TFPlanExitCode == 0 && steps.plan.outcome == 'success' }}
+        id: out-put
+        run: |
+          terraform output -no-color > output.txt
+        
+      - name: Download Output
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-${{ inputs.ENV}}     
+          path: output.txt   
+          overwrite: true
+      
+
+
+
+
