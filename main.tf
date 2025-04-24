@@ -16,11 +16,11 @@ resource "github_repository" "repo" {
 }
 
 resource "github_branch" "repo_branch" {
-  repository = github_repository.repo.name
+  repository = github_repository.repo[each.key]
   branch     = "master"
 }
 
 resource "github_branch_default" "default_branch" {
-  repository = github_repository.repo.name
+  repository = github_repository.repo[each.key]
   branch     = github_branch.repo_branch.branch
 }
