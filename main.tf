@@ -24,5 +24,5 @@ resource "github_branch" "repo_branch" {
 resource "github_branch_default" "default_branch" {
   for_each   = var.repo_list
   repository = github_repository.repo[each.key].name
-  branch     = github_branch.repo_branch.branch
+  branch     = github_branch.repo_branch[each.key].branch
 }
