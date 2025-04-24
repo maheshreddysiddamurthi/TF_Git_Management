@@ -14,3 +14,13 @@ resource "github_repository" "repo" {
   description        = each.value.description
   visibility         = each.value.visibility
 }
+
+resource "github_branch" "repo_branch" {
+  repository = github_repository.repo.name
+  branch     = "master"
+}
+
+resource "github_branch_default" "default_branch" {
+  repository = github_repository.repo.name
+  branch     = github_branch.repo_branch.branch
+}
