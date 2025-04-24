@@ -44,7 +44,7 @@ jobs:
 
       - name: Terraform init
         id: init
-        run: terraform init -upgrade -backend-config=backend-${{ inputs.ENV }}.hcl
+        run: terraform init -upgrade -backend-config=${{ inputs.ENV }}.hcl
 
       - name: Terraform validate
         id: validate
