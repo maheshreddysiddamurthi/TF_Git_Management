@@ -6,15 +6,11 @@ provider "github" {
   owner = "maheshreddysiddamurthi"
 }
 
-resource "github_repository" "example" {
-  name        = "example"
-  description = "My awesome codebase"
-
-  visibility = "public"
-
-  template {
-    owner                = "github"
-    repository           = "terraform-template-module"
-    include_all_branches = true
-  }
+resource "github_repository" "repo" {
+  for_each           = var.repo_list
+  name               = each.key
+  allow_rebase_merge = false
+  allow_squash_merge = false
+  description        = each.value.description
+  visibility         = each.value.visibility
 }
