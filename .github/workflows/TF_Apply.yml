@@ -43,6 +43,10 @@ jobs:
           name: ${{ inputs.ENV }}-tfplan
           path: ${{ github.workspace }}
 
+      - name: "test"
+        run: |
+         cat /home/runner/work/TF_Git_Management/TF_Git_Management
+
       - name: "Terraform Apply"
         id: apply
         run: |
