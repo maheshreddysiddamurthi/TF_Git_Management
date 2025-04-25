@@ -24,6 +24,7 @@ jobs:
     uses: ./.github/workflows/TF_Plan.yml
     with:
       ENV: dev
+    secrets: inherit  
 
   TF_Apply_DEV_Cluster:
     name: "TF_Apply_DEV_Cluster"
@@ -32,3 +33,4 @@ jobs:
     uses: ./.github/workflows/TF_Apply.yml
     with:
       ENV: dev
+    secrets: inherit  
