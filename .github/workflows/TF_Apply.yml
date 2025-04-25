@@ -50,4 +50,4 @@ jobs:
       - name: "Terraform Apply"
         id: apply
         run: |
-          terraform apply -no-color -auto-approve -input=false ${{ github.workspace }}/${{ inputs.ENV }}-tfplan
+          terraform apply -no-color -auto-approve -input=false ${{ github.workspace }}/tfplan
