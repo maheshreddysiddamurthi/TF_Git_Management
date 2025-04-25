@@ -28,7 +28,7 @@ jobs:
 
       - name: Configure PEM File
         run: |
-          echo "${{ secrets.GH_APP_PRIVATE_KEY }}" > private-key.pem
+          echo "${{ secrets.APP_PEM_KEY }}" > private-key.pem
           chmod 600 private-key.pem
         shell: bash 
 
