@@ -32,6 +32,8 @@ jobs:
           app-id: "1229947"
           private-key: ${{ env.APP_PEM_KEY }}
           owner: "maheshreddysiddamurthi"
+        env:
+          APP_PEM_KEY: ${{ secrets.APP_PEM_KEY }}  
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
