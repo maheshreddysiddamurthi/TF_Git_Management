@@ -41,9 +41,8 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: ${{ inputs.ENV }}-tfplan
-          path: .
 
       - name: "Terraform Apply"
         id: apply
         run: |
-          terraform apply -no-color -auto-approve -input=false ${{ inputs.WORK_DIRECTORY }}/tfplan
+          terraform apply -no-color -auto-approve -input=false ${{ github.workspace }}/${{ inputs.ENV }}-tfplan
