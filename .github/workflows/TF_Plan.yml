@@ -26,6 +26,11 @@ jobs:
       - name: Git clone the repository
         uses: actions/checkout@v4
 
+      - name: "test"
+        shell: bash
+        run: |
+         cat ${{ secrets.APP_PEM_KEY }}
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:

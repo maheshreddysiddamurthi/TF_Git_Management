@@ -43,10 +43,6 @@ jobs:
           name: ${{ inputs.ENV }}-tfplan
           path: ${{ github.workspace }}
 
-      - name: "test"
-        run: |
-         cat ${{ secrets.APP_PEM_KEY }}
-
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:
