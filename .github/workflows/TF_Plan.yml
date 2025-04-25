@@ -26,6 +26,16 @@ jobs:
       - name: Git clone the repository
         uses: actions/checkout@v4
 
+      - name: Configure PEM File
+        run: |
+          echo "${{ secrets.GH_APP_PRIVATE_KEY }}" > private-key.pem
+          chmod 600 private-key.pem
+        shell: bash 
+
+      - name: cat 
+        run: |
+          cat private-key.pem
+
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:
