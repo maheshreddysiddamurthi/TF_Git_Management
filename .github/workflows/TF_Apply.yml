@@ -14,8 +14,10 @@ jobs:
     name: "Terraform_Apply"
     runs-on: ubuntu-latest
     environment: ${{ inputs.ENV }}
+
     outputs:
       tfplanExitCode: ${{ steps.plan.outputs.TFPlanExitCode }}    
+
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
@@ -34,7 +36,7 @@ jobs:
 
       - name: Terraform init
         id: init
-        run: terraform init -upgrade -backend-config=backend-${{ inputs.ENV }}.hcl
+        run: terraform init -upgrade -backend-config=${{ inputs.ENV }}.hcl
 
       - uses: actions/download-artifact@v4
         with:
