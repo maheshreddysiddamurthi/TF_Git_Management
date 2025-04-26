@@ -15,6 +15,10 @@ permissions:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
+env:
+  GITHUB_APP_ID: 1229947
+  GITHUB_APP_INSTALLATION_ID: ${{ secrets.APP_PEM_KEY }}
+  GITHUB_APP_PEM_FILE: maheshreddysiddamurthi
 jobs: 
   Terraform_Plan:
     name: "Terraform_Plan"
