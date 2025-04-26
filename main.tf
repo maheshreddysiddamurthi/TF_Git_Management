@@ -3,8 +3,7 @@ terraform {
   }
 }
 provider "github" {
-  owner = "maheshreddysiddamurthi"
-  app_auth {}
+  token = var.token
 }
 
 resource "github_repository" "repo" {
