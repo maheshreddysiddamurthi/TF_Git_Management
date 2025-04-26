@@ -21,27 +21,21 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      tfplanExitCode: ${{ steps.plan.outputs.TFPlanExitCode }}    
+      tfplanExitCode: ${{ steps.plan.outputs.TFPlanExitCode }} 
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
 
-      - name: Configure PEM File
-        run: |
-          echo "${{ secrets.APP_PEM_KEY }}" > private-key.pem
-          chmod 600 private-key.pem
-        shell: bash 
-
-      - name: cat 
-        run: |
-          cat private-key.pem
+      - name: Decode PEM key
+        id: app_key
+        run: echo "${{ secrets.APP_PEM_KEY }}" | base64 -d > private-key.pem
 
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:
-          app-id: "1229947"
+          app-id: 1229947
           private-key: ${{ secrets.APP_PEM_KEY }}
-          owner: "maheshreddysiddamurthi"
+          owner: maheshreddysiddamurthi
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
