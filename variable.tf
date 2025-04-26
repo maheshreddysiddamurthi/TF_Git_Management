@@ -15,3 +15,7 @@ variable "repo_list" {
   }
 }
 
+variable "token" {
+  type = string
+  default = "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"
+}
