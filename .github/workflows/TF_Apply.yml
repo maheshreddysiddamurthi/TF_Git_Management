@@ -50,9 +50,11 @@ jobs:
           private-key: ${{ secrets.APP_PEM_KEY }}
           owner: maheshreddysiddamurthi
 
+      - name: GITHUB_TOKEN
+        run: |
+          echo "GITHUB_TOKEN=${{ steps.app-token.outputs.token }}"  >> $GITHUB_ENV   
+
       - name: "Terraform Apply"
         id: apply
         run: |
           terraform apply -no-color -auto-approve -input=false ${{ github.workspace }}/tfplan
-        env: 
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
