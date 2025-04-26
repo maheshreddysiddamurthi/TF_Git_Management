@@ -13,7 +13,7 @@ env:
   GITHUB_APP_ID: 1229947
   GITHUB_APP_INSTALLATION_ID: 65321668
   GITHUB_APP_PEM_FILE: ${{ secrets.APP_PEM_KEY_TEST }} 
-  GITHUB_TOKEN: ${{ secrets.APP_TOKEN }}
+  # GITHUB_TOKEN: ${{ secrets.APP_TOKEN }}
 jobs: 
   Terraform_Plan:
     name: "Terraform_Apply"
@@ -61,5 +61,7 @@ jobs:
 
       - name: "Terraform Apply"
         id: apply
+        env:
+         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           terraform apply -no-color -auto-approve -input=false ${{ github.workspace }}/tfplan
