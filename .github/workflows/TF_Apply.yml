@@ -12,7 +12,7 @@ permissions:
 env:
   GITHUB_APP_ID: 1229947
   GITHUB_APP_INSTALLATION_ID: 65321668
-  GITHUB_APP_PEM_FILE: ${{ secrets.APP_PEM_KEY }} 
+  GITHUB_APP_PEM_FILE: ${{ secrets.APP_PEM_KEY_TEST }} 
 
 jobs: 
   Terraform_Plan:
