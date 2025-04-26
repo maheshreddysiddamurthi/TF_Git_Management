@@ -3,7 +3,6 @@ terraform {
   }
 }
 provider "github" {
-  token = var.token
 }
 
 resource "github_repository" "repo" {
