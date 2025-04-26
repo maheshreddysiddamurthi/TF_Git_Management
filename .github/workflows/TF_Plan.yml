@@ -26,9 +26,9 @@ jobs:
       - name: Git clone the repository
         uses: actions/checkout@v4
 
-      - name: Decode PEM key
-        id: app_key
-        run: echo "${{ secrets.APP_PEM_KEY }}" | base64 -d > private-key.pem
+      # - name: Decode PEM key
+      #   id: app_key
+      #   run: echo "${{ secrets.APP_PEM_KEY }}" | base64 -d > private-key.pem
 
       - uses: actions/create-github-app-token@v1
         id: app-token
