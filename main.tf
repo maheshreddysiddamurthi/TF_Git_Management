@@ -3,6 +3,7 @@ terraform {
   }
 }
 provider "github" {
+  owner = maheshreddysiddamurthi
 }
 
 resource "github_repository" "repo" {
