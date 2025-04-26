@@ -17,8 +17,8 @@ concurrency:
 
 env:
   GITHUB_APP_ID: 1229947
-  GITHUB_APP_INSTALLATION_ID: ${{ secrets.APP_PEM_KEY }}
-  GITHUB_APP_PEM_FILE: maheshreddysiddamurthi
+  GITHUB_APP_INSTALLATION_ID: 65321668
+  GITHUB_APP_PEM_FILE: ${{ secrets.APP_PEM_KEY }}
 jobs: 
   Terraform_Plan:
     name: "Terraform_Plan"
