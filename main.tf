@@ -16,19 +16,19 @@ resource "github_repository" "repo" {
   auto_init          = true
 }
 
-resource "time_sleep" "wait_30_seconds" {
-  depends_on      = [github_repository.repo]
-  create_duration = "30s"
-}
+# resource "time_sleep" "wait_30_seconds" {
+#   depends_on      = [github_repository.repo]
+#   create_duration = "30s"
+# }
 
-resource "github_branch" "repo_branch" {
-  for_each   = var.repo_list
-  repository = github_repository.repo[each.key].name
-  branch     = "master"
-}
+# resource "github_branch" "repo_branch" {
+#   for_each   = var.repo_list
+#   repository = github_repository.repo[each.key].name
+#   branch     = "master"
+# }
 
-resource "github_branch_default" "default_branch" {
-  for_each   = var.repo_list
-  repository = github_repository.repo[each.key].name
-  branch     = github_branch.repo_branch[each.key].branch
-}
+# resource "github_branch_default" "default_branch" {
+#   for_each   = var.repo_list
+#   repository = github_repository.repo[each.key].name
+#   branch     = github_branch.repo_branch[each.key].branch
+# }
