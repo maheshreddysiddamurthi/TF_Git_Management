@@ -1,7 +1,7 @@
 variable "repo_list" {
   type = map(object({
     description = string
-    visibility  = string
+    visibility  = optional(string, "private")
   }))
   default = {
     "python_practice" = {
@@ -14,7 +14,7 @@ variable "repo_list" {
     },
     "test" = {
       description = "Learing Infra creating using terraform in AWS"
-      visibility  = optional(string, "public")
+      visibility  = "public"
     }
   }
 }
