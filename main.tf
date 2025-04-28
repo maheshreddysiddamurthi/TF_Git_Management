@@ -26,10 +26,11 @@ resource "time_sleep" "wait_30_seconds" {
 # Non master default branch
 resource "github_branch" "repo_branch" {
 
-  for_each      = var.repo_list
-  repository    = github_repository.repo[each.key].name
-  source_branch = "master"
-  branch        = develop
+  for_each   = var.repo_list
+  repository = github_repository.repo[each.key].name
+  branch     = "master"
+  # source_branch = "master"
+  # branch        = develop
 }
 
 # Creating Default branch
