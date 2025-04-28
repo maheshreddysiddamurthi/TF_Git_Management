@@ -1,7 +1,7 @@
 variable "repo_list" {
   type = map(object({
     description = string
-    visibility  = string
+    visibility  = optional(string, "private")
   }))
   default = {
     "python_practice" = {
