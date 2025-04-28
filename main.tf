@@ -6,6 +6,7 @@ provider "github" {
   owner = "maheshreddysiddamurthi"
 }
 
+# Creating repositories
 resource "github_repository" "repo" {
   for_each           = var.repo_list
   name               = each.key
@@ -16,19 +17,24 @@ resource "github_repository" "repo" {
   auto_init          = true
 }
 
+# Sleep 30 sec to complete initial commit
 resource "time_sleep" "wait_30_seconds" {
   depends_on      = [github_repository.repo]
   create_duration = "30s"
 }
 
+# Non master default branch
 resource "github_branch" "repo_branch" {
-  for_each   = var.repo_list
-  repository = github_repository.repo[each.key].name
-  branch     = "master"
+
+  for_each      = var.repo_list
+  repository    = github_repository.repo[each.key].name
+  source_branch = "master"
+  branch        = develop
 }
 
+# Creating Default branch
 resource "github_branch_default" "default_branch" {
   for_each   = var.repo_list
-  repository = each.key.name
+  repository = github_repository.repo[each.key].name
   branch     = github_branch.repo_branch[each.key].branch
 }

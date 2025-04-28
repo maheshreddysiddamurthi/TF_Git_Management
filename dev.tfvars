@@ -7,4 +7,8 @@ repo_list = {
     description = "Learing Infra creating using terraform in AWS"
     visibility  = "public"
   }
+  "test" = {
+    description = "Learing Infra creating using terraform in AWS"
+    # visibility  = "public"
+  }
 }
