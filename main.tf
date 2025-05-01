@@ -6,6 +6,10 @@ provider "github" {
   owner = "maheshreddysiddamurthi"
 }
 
+provider "github" {
+  token = ""
+}
+
 # Creating repositories
 resource "github_repository" "repo" {
   for_each           = var.repo_list
@@ -25,17 +29,30 @@ resource "time_sleep" "wait_30_seconds" {
 
 # Non master default branch
 resource "github_branch" "repo_branch" {
-
-  for_each   = var.repo_list
-  repository = github_repository.repo[each.key].name
-  branch     = "master"
-  # source_branch = "master"
-  # branch        = develop
+  for_each      = { for k, v in var.repo_list : k => v if v.default_branch != "master" }
+  repository    = github_repository.repo[each.key].name
+  source_branch = "master"
+  branch        = each.value.default_branch
 }
 
 # Creating Default branch
 resource "github_branch_default" "default_branch" {
-  for_each   = var.repo_list
+  for_each   = { for k, v in var.repo_list : k => v if v.default_branch != "master" }
   repository = github_repository.repo[each.key].name
-  branch     = github_branch.repo_branch[each.key].branch
+  branch     = "master"
 }
+
+# locals {
+#   test = { for k, v in var.map : k => v }
+# }
+
+# variable "map" {
+#   type = map(string)
+#   default = {
+#     name    = "mahesh"
+#     initial = "siddamurthi"
+#   }
+# }
+# output "name" {
+#   value = local.test
+# }
