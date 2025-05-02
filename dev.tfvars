@@ -14,17 +14,17 @@ repo_list = {
         deploy_branch = ["master", "main"]
       }
     },
-    file_to_commite = {
-      Infra_plan = {
-        file_name        = "TF_Plan.yml"
-        path_destination = ".github/workspace/TF_Plan.yml"
-        # env_value_replace = {
-        #   common_replace_values = {
-        #     deploy_name = "test"
-        #   }
-        # }
-      }
-    }
+    # file_to_commite = {
+    #   Infra_plan = {
+    #     file_name        = "TF_Plan.yml"
+    #     path_destination = ".github/workspace/TF_Plan.yml"
+    #     env_value_replace = {
+    #       common_replace_values = {
+    #         deploy_name = "test"
+    #       }
+    #     }
+    #   }
+    # }
   },
   "aws_practice" = {
     description    = "Learing Infra creating using terraform in AWS"
