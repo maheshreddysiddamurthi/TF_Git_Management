@@ -16,7 +16,7 @@ repo_list = {
     },
     file_to_commite = {
       Infra_yml_files = {
-        file_name       = "TF_Plan.yml"
+        file_name        = "TF_Plan.yml"
         path_destination = ".github/workspace/TF_Plan.yml"
         env_value_replace = {
           deploy_name = "test"

@@ -9,7 +9,7 @@ variable "repo_list" {
       env_variables = optional(list(string), [])
     }))
     file_to_commite = map(object({
-      file_name = optional(string, "")
+      file_name        = optional(string, "")
       path_destination = optional(string, "")
       env_value_replace = map(object({
         deploy_name = optional(string, "")
