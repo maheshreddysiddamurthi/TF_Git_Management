@@ -27,17 +27,17 @@ resource "time_sleep" "wait_30_seconds" {
   create_duration = "30s"
 }
 
-# Non master default branch
+# Non main default branch
 resource "github_branch" "repo_branch" {
-  for_each      = { for k, v in var.repo_list : k => v if v.default_branch != "master" }
+  for_each      = { for k, v in var.repo_list : k => v if v.default_branch != "main" }
   repository    = github_repository.repo[each.key].name
-  source_branch = "master"
+  source_branch = "main"
   branch        = each.value.default_branch
 }
 
 # Creating Default branch
 resource "github_branch_default" "default_branch" {
-  for_each   = { for k, v in var.repo_list : k => v if v.default_branch != "master" }
+  for_each   = { for k, v in var.repo_list : k => v if v.default_branch != "main" }
   repository = github_repository.repo[each.key].name
   branch     = github_branch.repo_branch[each.key].branch
 }

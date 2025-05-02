@@ -10,7 +10,7 @@ repo_list = {
       }
       prod = {
         approvers     = ["maheshreddysiddamurthi"]
-        deploy_branch = ["master", "main"]
+        deploy_branch = ["main"]
       }
     },
     # file_to_commite = {
@@ -37,7 +37,7 @@ repo_list = {
       }
       prod = {
         approvers     = ["maheshreddysiddamurthi"]
-        deploy_branch = ["master", "main"]
+        deploy_branch = ["main"]
       }
     }
   }

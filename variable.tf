@@ -2,7 +2,7 @@ variable "repo_list" {
   type = map(object({
     description    = string
     visibility     = optional(string, "private")
-    default_branch = optional(string, "master")
+    default_branch = optional(string, "main")
     repo_env_settings = map(object({
       approvers     = optional(list(string), [])
       deploy_branch = optional(list(string), [])
