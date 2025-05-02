@@ -39,7 +39,7 @@ resource "github_branch" "repo_branch" {
 resource "github_branch_default" "default_branch" {
   for_each   = { for k, v in var.repo_list : k => v if v.default_branch != "master" }
   repository = github_repository.repo[each.key].name
-  branch     = github_branch.repo_branch[each.value.default_branch].branch
+  branch     = github_branch.repo_branch[each.keyh].branch
 }
 
 # locals {
