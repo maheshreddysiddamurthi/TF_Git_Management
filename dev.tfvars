@@ -18,11 +18,11 @@ repo_list = {
       Infra_plan = {
         file_name        = "TF_Plan.yml"
         path_destination = ".github/workspace/TF_Plan.yml"
-        env_value_replace = {
-          common_replace_values = {
-            deploy_name = "test"
-          }
-        }
+        # env_value_replace = {
+        #   common_replace_values = {
+        #     deploy_name = "test"
+        #   }
+        # }
       }
     }
   },
