@@ -1,7 +1,7 @@
 repo_list = {
   "python_practice" = {
-    description    = "Python Practice for AI/ML learning"
-    visibility     = "public"
+    description = "Python Practice for AI/ML learning"
+    visibility  = "public"
     repo_env_settings = {
       dev = {
         approvers     = ["maheshreddysiddamurthi"]
