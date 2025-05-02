@@ -6,9 +6,9 @@ provider "github" {
   owner = "maheshreddysiddamurthi"
 }
 
-provider "github" {
-  token = ""
-}
+# provider "github" {
+#   token = ""
+# }
 
 # Creating repositories
 resource "github_repository" "repo" {
