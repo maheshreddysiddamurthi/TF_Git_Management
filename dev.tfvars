@@ -13,16 +13,16 @@ repo_list = {
         approvers     = ["maheshreddysiddamurthi"]
         deploy_branch = ["master", "main"]
       }
+    },
+    file_to_commite = {
+      Infra_yml_files = {
+        file_name       = "TF_Plan.yml"
+        path_destination = ".github/workspace/TF_Plan.yml"
+        env_value_replace = {
+          deploy_name = "test"
+        }
+      }
     }
-    # file_to_commite = {
-    #   Infra_yml_files = {
-    #     filen_name       = "TF_Plan.yml"
-    #     path_destination = ".github/workspace/TF_Plan.yml"
-    #     env_value_replace = {
-    #       deploy_name = "test"
-    #     }
-    #   }
-    # }
   },
   "aws_practice" = {
     description    = "Learing Infra creating using terraform in AWS"
@@ -39,14 +39,5 @@ repo_list = {
         deploy_branch = ["master", "main"]
       }
     }
-    # file_to_commite = {
-    #   Infra_yml_files = {
-    #     filen_name       = "TF_Plan.yml"
-    #     path_destination = ".github/workspace/TF_Plan.yml"
-    #     env_value_replace = {
-    #       deploy_name = "test"
-    #     }
-    #   }
-    # }
   }
 }
