@@ -8,12 +8,12 @@ variable "repo_list" {
       deploy_branch = optional(list(string), [])
       env_variables = optional(list(string), [])
     }))
-    file_to_commite = map(object({
-      filen_name       = optional(string, "")
-      path_destination = optional(string, "")
-      env_value_replace = map(object({
-        deploy_name = optional(string, "")
-      }))
-    }))
+    # file_to_commite = map(object({
+    #   filen_name       = optional(string, "")
+    #   path_destination = optional(string, "")
+    #   env_value_replace = map(object({
+    #     deploy_name = optional(string, "")
+    #   }))
+    # }))
   }))
 }
